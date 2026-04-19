@@ -1,5 +1,7 @@
 from typing import List
 
+
+import requests
 import os
 import threading
 import time
@@ -52,9 +54,28 @@ while not server.started:
 address, port = sock.getsockname()
 print(f"HTTP server is now running on http://{address}:{port}")
 
+
+# The API endpoint
+url = "http://127.0.0.1:9000/predict"
+
+# Data to be sent
+data = {"features": [13.2, 2.77, 2.51, 18.5, 103.0, 1.15, 2.61, 0.26, 1.46, 3.0, 1.05, 3.33, 820.0]}
+
+#{
+#    "userID": 1,
+#    "title": "Making a POST request",
+#    "body": "This is the data we created."
+#}
+
+# A POST request to the API
+response = requests.post(url, json=data)
+
+# Print the response
+print(response.json())
+
 # subprocess.check_output(['curl', '-X', 'POST', 'http://127.0.0.1:9000/predict', '-H', '"Content-Type: application/json"', '-d', '{"features": [13.2, 2.77, 2.51, 18.5, 103.0, 1.15, 2.61, 0.26, 1.46, 3.0, 1.05, 3.33, 820.0]}'])
 
-subprocess.run(['curl', '-X', 'POST', 'http://127.0.0.1:9000/predict', '-H', '"Content-Type: application/json"', '-d', '{"features": [13.2, 2.77, 2.51, 18.5, 103.0, 1.15, 2.61, 0.26, 1.46, 3.0, 1.05, 3.33, 820.0]}'], capture_output=True)
+# subprocess.run(['curl', '-X', 'POST', 'http://127.0.0.1:9000/predict', '-H', '"Content-Type: application/json"', '-d', '{"features": [13.2, 2.77, 2.51, 18.5, 103.0, 1.15, 2.61, 0.26, 1.46, 3.0, 1.05, 3.33, 820.0]}'], capture_output=True)
 
 #result = os.popen(['curl', '-X', 'POST', 'http://127.0.0.1:9000/predict', '-H', '"Content-Type: application/json"', '-d', '{"features": [13.2, 2.77, 2.51, 18.5, 103.0, 1.15, 2.61, 0.26, 1.46, 3.0, 1.05, 3.33, 820.0]}']).read()
 #print (result)
