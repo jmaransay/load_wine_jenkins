@@ -35,5 +35,18 @@ def predict(features: Features):
     return {"prediction": prediction_label}
 
 
-if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=9000)
+config = uvicorn.Config(app=app)
+server = uvicorn.Server(config=config)
+(sock := socket.socket()).bind(("127.0.0.1", 0))
+thread = threading.Thread(target=server.run, kwargs={"sockets": [sock]})
+thread.start()  # non-blocking call
+
+while not server.started:
+    time.sleep(0.001)
+
+address, port = sock.getsockname()
+print(f"HTTP server is now running on http://{address}:{port}")
+
+
+# if __name__ == "__main__":
+#    uvicorn.run(app, host="127.0.0.1", port=9000)
