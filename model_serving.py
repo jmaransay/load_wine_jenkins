@@ -6,6 +6,7 @@ import time
 import socket
 import joblib
 import uvicorn
+import subprocess
 from fastapi import FastAPI
 from pydantic import BaseModel
 
@@ -52,13 +53,15 @@ address, port = sock.getsockname()
 print(f"HTTP server is now running on http://{address}:{port}")
 
 
-result = os.popen("curl -X POST 'http://127.0.0.1:9000/predict'
+
+
+subprocess.call(['curl', '-x', 'POST', 'http://127.0.0.1:9000/predict', '-H', '"Content-Type: application/json"', '-d', '{"features:[13.2, 2.77, 2.51, 18.5, 103.0, 1.15, 2.61, 0.26, 1.46, 3.0, 1.05, 3.33, 820.0]"}'])
+
+
+
+# result = os.popen("curl -X POST 'http://127.0.0.1:9000/predict'
                         -H 'Content-Type: application/json' -d '{\\"features\\": [13.2, 2.77, 2.51, 18.5, 103.0, 1.15, 2.61, 0.26, 1.46, 3.0, 1.05, 3.33, 820.0]}'").read()
-print result
-
-
-
-
+# print result
 
 
 
