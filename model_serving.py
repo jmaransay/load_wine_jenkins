@@ -40,7 +40,7 @@ def predict(features: Features):
 
 config = uvicorn.Config(app=app)
 server = uvicorn.Server(config=config)
-(sock := socket.socket()).bind(("127.0.0.1", 0))
+(sock := socket.socket()).bind(("127.0.0.1", 9000))
 thread = threading.Thread(target=server.run, kwargs={"sockets": [sock]})
 thread.start()  # non-blocking call
 
