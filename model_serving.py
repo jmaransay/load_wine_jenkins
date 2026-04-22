@@ -54,7 +54,7 @@ class Server(uvicorn.Server):
             self.should_exit = True
             thread.join()
 
-config = uvicorn.Config("example:app", host="127.0.0.1", port=9000, log_level="info")
+config = uvicorn.Config(app=app, host="127.0.0.1", port=9000, log_level="info")
 server = Server(config=config)
 
 with server.run_in_thread():
