@@ -59,8 +59,8 @@ server = Server(config=config)
 
 with server.run_in_thread():
     # Server started.
-    address, port = sock.getsockname()
-    print(f"HTTP server is now running on http://{address}:{port}")
+    # address, port = sock.getsockname()
+    # print(f"HTTP server is now running on http://{address}:{port}")
     # The API endpoint
     url = "http://127.0.0.1:9000/predict"
     # Data to be sent
