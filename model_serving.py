@@ -54,18 +54,11 @@ while not server.started:
 address, port = sock.getsockname()
 print(f"HTTP server is now running on http://{address}:{port}")
 
-
 # The API endpoint
 url = "http://127.0.0.1:9000/predict"
 
 # Data to be sent
 data = {"features": [13.2, 2.77, 2.51, 18.5, 103.0, 1.15, 2.61, 0.26, 1.46, 3.0, 1.05, 3.33, 820.0]}
-
-#{
-#    "userID": 1,
-#    "title": "Making a POST request",
-#    "body": "This is the data we created."
-#}
 
 # A POST request to the API
 response = requests.post(url, json=data)
@@ -73,12 +66,16 @@ response = requests.post(url, json=data)
 # Print the response
 print(response.json())
 
-# subprocess.check_output(['curl', '-X', 'POST', 'http://127.0.0.1:9000/predict', '-H', '"Content-Type: application/json"', '-d', '{"features": [13.2, 2.77, 2.51, 18.5, 103.0, 1.15, 2.61, 0.26, 1.46, 3.0, 1.05, 3.33, 820.0]}'])
+# Data to be sent
+data = {"features": [10.2, 2.1, 3, 14.5, 90.0, 1.34, 2.90, 0.12, 1.99, 1.0, 1.65, 3.88, 700.0]}
 
-# subprocess.run(['curl', '-X', 'POST', 'http://127.0.0.1:9000/predict', '-H', '"Content-Type: application/json"', '-d', '{"features": [13.2, 2.77, 2.51, 18.5, 103.0, 1.15, 2.61, 0.26, 1.46, 3.0, 1.05, 3.33, 820.0]}'], capture_output=True)
+# A POST request to the API
+response = requests.post(url, json=data)
 
-#result = os.popen(['curl', '-X', 'POST', 'http://127.0.0.1:9000/predict', '-H', '"Content-Type: application/json"', '-d', '{"features": [13.2, 2.77, 2.51, 18.5, 103.0, 1.15, 2.61, 0.26, 1.46, 3.0, 1.05, 3.33, 820.0]}']).read()
-#print (result)
+# Print the response
+print(response.json())
+
+server.stop
 
 # if __name__ == "__main__":
 #    uvicorn.run(app, host="127.0.0.1", port=9000)
