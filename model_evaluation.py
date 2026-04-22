@@ -11,7 +11,7 @@ def load_preprocessed_data(file_path):
 
 
 def evaluate_model(model, X_test, y_test):
-    predictions = model.predict(X_test)
+    predictions = model.predict(X_test.values)
     accuracy = accuracy_score(y_test, predictions)
     report = classification_report(y_test, predictions)
     return accuracy, report
