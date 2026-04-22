@@ -38,27 +38,6 @@ pipeline {
             }
         }
 
-        stage('Serve Model') {
-            steps {
-                script {
-                }
-            }
-        }
-
-        stage('Test Serve Model') {
-            steps {
-                script {
-                    // Test the server with sample values
-                }
-            }
-        }
-
-        stage('Deploy Model') {
-            steps {
-                script {
-                }
-            }
-        }
     }
 
     post {
