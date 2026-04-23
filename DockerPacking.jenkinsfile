@@ -1,0 +1,17 @@
+pipeline {
+    agent { label 'host' }
+    stages {
+       stage('Dockerizing Model') {
+            steps {
+                script {
+                    // Run model evaluation script
+                    sh 'pwd'
+                    sh "echo $WORKSPACE"
+                    sh "ls -la"
+                    // sh "cp $WORKSPACE/model.pkl ."
+                    // sh "cp $WORKSPACE/DOCKERFILE ."
+                    sh 'docker buildx build -t wine_configuration:$BUILD_NUMBER .'
+                }
+            }
+        }
+}
